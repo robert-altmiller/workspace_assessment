@@ -210,29 +210,6 @@ ENABLE_STREAMING_WRITES = True   # True = stream, False = batch
 - **Extensible**: Add new endpoints in `endpoints.py`
 - **Testable**: Each module can be tested independently
 
-## 🔍 Performance Analysis
-
-### Likely Bottlenecks (15-hour runtime)
-
-1. **Unity Catalog Enumeration** (Primary suspect)
-   - Sequential API calls per catalog → schema → tables
-   - Could be 1000s of API calls for large environments
-   - Location: `unity_catalog.py:list_tables_for_schema()`
-
-2. **REST API Collection** 
-   - Some endpoints may have large datasets
-   - Check pagination settings for large collections
-
-3. **Data Processing**
-   - JSON flattening overhead for large responses
-
-### Optimization Areas
-
-- **UC Enumeration**: Consider async or bulk API approaches
-- **Concurrency**: Increase `MAX_CONCURRENCY` if API allows
-- **Pagination**: Disable for endpoints that don't need complete data
-- **Filtering**: Add allowlists for specific object types
-
 ## 🛠️ Usage Examples
 
 ### Standard Run (Streaming Mode)
