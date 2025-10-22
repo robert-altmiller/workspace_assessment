@@ -29,38 +29,125 @@ workspace_assessment/
 
 ## 🔧 Configuration
 
-### Main Settings (`config.py`)
+All settings are in `config.ipynb`. Edit this notebook to customize the assessment.
+
+### Target Configuration
 
 ```python
 # Where to write results
-TARGET_CATALOG = "main"
-TARGET_SCHEMA = "workspace_scan"
+TARGET_CATALOG = "boeingeastus"       # Your catalog name
+TARGET_SCHEMA = "workspace_scan"      # Schema for output tables
+WRITE_RAW_MODE = "overwrite"          # "append" or "overwrite"
+WRITE_SUMMARY_MODE = "overwrite"      # "append" or "overwrite"
+```
 
-# Concurrency settings
-MAX_CONCURRENCY = 20
-UC_MAX_WORKERS = 20
+### HTTP & Concurrency Settings
 
-# Unity Catalog limits (for faster testing)
-UC_CATALOG_LIMIT = 5           # 0 = all catalogs
-UC_SCHEMA_LIMIT_PER_CATALOG = 10  # 0 = all schemas per catalog
+```python
+# Async HTTP concurrency
+MAX_CONCURRENCY = 20              # Concurrent API requests (default: 20)
+HTTP_TIMEOUT_SEC = 60             # Request timeout in seconds
+RETRY_DELAY_BASE = 2              # Base delay for exponential backoff
+RETRY_ATTEMPTS = 3                # Number of retry attempts
+
+# Pagination defaults
+PAGE_SIZE_DEFAULT = 100           # Default page size for pagination
+JOBS_PAGE_SIZE = 100              # API max for jobs endpoint
+DBSQL_WH_PAGE_SIZE = 100          # Page size for SQL warehouses
+```
+
+### Logging & Debug Settings
+
+```python
+VERBOSE_LOG = True                # Enable detailed logging
+DEBUG_HTTP = False                # Log HTTP requests/responses (noisy)
+HEARTBEAT_SEC = 5                 # Progress update interval in seconds
+```
+
+### Data Processing Settings
+
+```python
+# Streaming vs Batch writes
+ENABLE_STREAMING_WRITES = True    # Write immediately (memory efficient)
+                                  # False = batch all writes at end
+```
+
+### Delta Lake Schema Handling
+
+```python
+# Schema evolution options
+ENABLE_MERGE_SCHEMA = True        # Enable automatic schema merging
+ENABLE_OVERWRITE_SCHEMA = False   # Overwrite schema completely (use with caution)
+SKIP_EMPTY_DATASETS = True        # Skip writing empty datasets
+FALLBACK_TO_OVERWRITE = True      # Retry with overwrite on schema errors
+VERBOSE_SCHEMA_ERRORS = True      # Print detailed schema error info
+```
+
+### Unity Catalog Settings
+
+```python
+# UC enumeration controls
+UC_ENABLE = True                          # Enable UC enumeration
+UC_CATALOG_ALLOWLIST = []                 # Empty = all, or ["main", "catalog2"]
+UC_CATALOG_LIMIT = 0                      # 0 = all, N = first N catalogs
+UC_SCHEMA_LIMIT_PER_CATALOG = 0           # 0 = all, N = first N schemas per catalog
+UC_MAX_WORKERS = 20                       # Thread pool size for UC enumeration
 ```
 
 ### Per-Endpoint Pagination Control
 
-**Complete pagination control** for all 29 endpoints in `config.py`:
+**Complete pagination control** for all 29 endpoints in `config.ipynb`:
 
 ```python
 # Global default
 ENABLE_PAGINATION_BY_DEFAULT = True
 
-# Per-endpoint overrides (all 29 endpoints covered)
+# Per-endpoint overrides (values: True = force enable, False = force disable, None = use default)
 ENDPOINT_PAGINATION_OVERRIDES = {
-    # Values: True = force enable, False = force disable, None = use endpoint default
-    "databricks_dashboard": False,           # Disable for faster collection
-    "databricks_workspace_file": False,     # Usually too large and not needed
+    # --- Compute ---
+    "databricks_cluster": None,             # No pagination available
+    "databricks_cluster_policy": True,      # Enable - can be many policies
+    "databricks_instance_pool": None,       # No pagination available
+    
+    # --- Workspace / Files ---
+    "databricks_workspace_file": False,     # Disable - usually too large
+    "databricks_dbfs_file": False,          # Disable - usually too large
+    "databricks_workspace_conf": None,      # Single object
+    "databricks_global_init_script": None,  # No pagination available
+    
+    # --- Jobs / Pipelines / Alerts / Dashboards ---
     "databricks_job": True,                 # Enable - can be many jobs
+    "databricks_pipeline": None,            # No pagination available
+    "databricks_alert": True,               # Enable - can be many alerts
+    "databricks_dashboard": False,          # Disable for faster collection
+    
+    # --- MLflow / Serving ---
+    "databricks_registered_model": True,    # Enable - can be many models
     "databricks_experiment": True,          # Enable - can be many experiments
-    # ... 25 more endpoints with documented recommendations
+    "databricks_model_serving": True,       # Enable - can be many endpoints
+    
+    # --- DBSQL ---
+    "databricks_sql_endpoint": True,        # Enable - can be many warehouses
+    "databricks_sql_dashboard": False,      # Alias to dashboard
+    "databricks_sql_alerts": True,          # Alias to alerts
+    
+    # --- UC / Metastore ---
+    "databricks_catalog": None,             # No pagination (usually small)
+    "databricks_external_location": True,   # Enable - can be many
+    "databricks_storage_credential": True,  # Enable - can be many
+    "databricks_share": True,               # Enable - can be many
+    "databricks_recipient": True,           # Enable - can be many
+    
+    # --- Repos / Identity / Connections ---
+    "databricks_repo": True,                # Enable - can be many repos
+    "databricks_secret_scope": None,        # No pagination available
+    "databricks_group": True,               # Enable - can be many groups
+    "databricks_connection": True,          # Enable - can be many connections
+    "databricks_credential": None,          # No pagination available
+    
+    # --- Vector Search ---
+    "databricks_vector_search_endpoint": True,  # Enable
+    "databricks_vector_search_index": None,     # Skipped (requires endpoint_name)
 }
 ```
 
