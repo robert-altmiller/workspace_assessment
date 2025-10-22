@@ -4,11 +4,15 @@ A modular Python tool for comprehensive Databricks workspace assessment, designe
 
 ## 🚀 Quick Start
 
-In a Databricks notebook:
+**New to this tool?** See [QUICKSTART.md](QUICKSTART.md) for a step-by-step guide including prerequisites.
+
+**Already set up?** Run the assessment:
 
 ```python
 %run ./main
 ```
+
+---
 
 ## 📁 Project Structure
 
