@@ -149,33 +149,7 @@ If you see `[CANNOT_MERGE_TYPE]` errors:
 ENABLE_OVERWRITE_SCHEMA = True    # Force schema overwrite
 ```
 
-## Next Steps
-
-- **Full Documentation**: See [README.md](README.md) for advanced configuration
-- **Query Examples**: Analyze collected data with SQL
-- **Scheduling**: Run assessment on a schedule to track changes over time
-
-## What's Collected?
-
-### Compute
-Clusters, cluster policies, instance pools
-
-### Jobs & Workflows
-Jobs, DLT pipelines, alerts, Lakeview dashboards
-
-### Data & Analytics
-SQL warehouses, Unity Catalog (catalogs, schemas, tables), external locations, storage credentials
-
-### MLflow
-Experiments, registered models, model serving endpoints
-
-### Security & Governance
-Groups, secret scopes, repos, connections
-
-### Infrastructure
-DBFS mounts, workspace configuration, global init scripts
-
 ---
 
-**Questions?** Check the full [README.md](README.md) for detailed documentation.
+**Need more details?** Check the full [README.md](README.md) for comprehensive documentation and advanced configuration options.
 
