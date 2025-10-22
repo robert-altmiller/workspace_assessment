@@ -247,57 +247,57 @@ UC_CATALOG_ALLOWLIST = ["main", "hive_metastore"]
 ## 📈 Output Tables
 
 ### Summary Table
-- `main.workspace_scan.workspace_scan_summary` - Categorized counts of all objects
+- `your_catalog_name.workspace_scan.workspace_scan_summary` - Categorized counts of all objects
 
 ### Raw Data Tables (32 total)
 
 **Compute**
-- `main.workspace_scan.raw_databricks_cluster`
-- `main.workspace_scan.raw_databricks_cluster_policy`
-- `main.workspace_scan.raw_databricks_instance_pool`
+- `your_catalog_name.workspace_scan.raw_databricks_cluster`
+- `your_catalog_name.workspace_scan.raw_databricks_cluster_policy`
+- `your_catalog_name.workspace_scan.raw_databricks_instance_pool`
 
 **Jobs & Workflows**
-- `main.workspace_scan.raw_databricks_job`
-- `main.workspace_scan.raw_databricks_pipeline`
-- `main.workspace_scan.raw_databricks_alert`
-- `main.workspace_scan.raw_databricks_dashboard`
+- `your_catalog_name.workspace_scan.raw_databricks_job`
+- `your_catalog_name.workspace_scan.raw_databricks_pipeline`
+- `your_catalog_name.workspace_scan.raw_databricks_alert`
+- `your_catalog_name.workspace_scan.raw_databricks_dashboard`
 
 **Data & Analytics**
-- `main.workspace_scan.raw_databricks_sql_endpoint`
-- `main.workspace_scan.raw_databricks_sql_dashboard`
-- `main.workspace_scan.raw_databricks_sql_alerts`
+- `your_catalog_name.workspace_scan.raw_databricks_sql_endpoint`
+- `your_catalog_name.workspace_scan.raw_databricks_sql_dashboard`
+- `your_catalog_name.workspace_scan.raw_databricks_sql_alerts`
 
 **Unity Catalog**
-- `main.workspace_scan.raw_databricks_catalog`
-- `main.workspace_scan.raw_databricks_schema` (full metadata)
-- `main.workspace_scan.raw_databricks_table` (full metadata)
-- `main.workspace_scan.raw_databricks_external_location`
-- `main.workspace_scan.raw_databricks_storage_credential`
-- `main.workspace_scan.raw_databricks_share`
-- `main.workspace_scan.raw_databricks_recipient`
-- `main.workspace_scan.raw_databricks_connection`
+- `your_catalog_name.workspace_scan.raw_databricks_catalog`
+- `your_catalog_name.workspace_scan.raw_databricks_schema` (full metadata)
+- `your_catalog_name.workspace_scan.raw_databricks_table` (full metadata)
+- `your_catalog_name.workspace_scan.raw_databricks_external_location`
+- `your_catalog_name.workspace_scan.raw_databricks_storage_credential`
+- `your_catalog_name.workspace_scan.raw_databricks_share`
+- `your_catalog_name.workspace_scan.raw_databricks_recipient`
+- `your_catalog_name.workspace_scan.raw_databricks_connection`
 
 **MLflow**
-- `main.workspace_scan.raw_databricks_experiment`
-- `main.workspace_scan.raw_databricks_registered_model`
-- `main.workspace_scan.raw_databricks_model_serving`
+- `your_catalog_name.workspace_scan.raw_databricks_experiment`
+- `your_catalog_name.workspace_scan.raw_databricks_registered_model`
+- `your_catalog_name.workspace_scan.raw_databricks_model_serving`
 
 **Security & Governance**
-- `main.workspace_scan.raw_databricks_group`
-- `main.workspace_scan.raw_databricks_secret_scope`
-- `main.workspace_scan.raw_databricks_credential`
+- `your_catalog_name.workspace_scan.raw_databricks_group`
+- `your_catalog_name.workspace_scan.raw_databricks_secret_scope`
+- `your_catalog_name.workspace_scan.raw_databricks_credential`
 
 **Workspace & Files**
-- `main.workspace_scan.raw_databricks_workspace_file`
-- `main.workspace_scan.raw_databricks_dbfs_file`
-- `main.workspace_scan.raw_databricks_workspace_conf`
-- `main.workspace_scan.raw_databricks_global_init_script`
-- `main.workspace_scan.raw_databricks_repo`
-- `main.workspace_scan.raw_dbfs_mount_points`
+- `your_catalog_name.workspace_scan.raw_databricks_workspace_file`
+- `your_catalog_name.workspace_scan.raw_databricks_dbfs_file`
+- `your_catalog_name.workspace_scan.raw_databricks_workspace_conf`
+- `your_catalog_name.workspace_scan.raw_databricks_global_init_script`
+- `your_catalog_name.workspace_scan.raw_databricks_repo`
+- `your_catalog_name.workspace_scan.raw_dbfs_mount_points`
 
 **Vector Search**
-- `main.workspace_scan.raw_databricks_vector_search_endpoint`
-- `main.workspace_scan.raw_databricks_vector_search_index`
+- `your_catalog_name.workspace_scan.raw_databricks_vector_search_endpoint`
+- `your_catalog_name.workspace_scan.raw_databricks_vector_search_index`
 
 **Table Schema**: Each raw table includes:
 - `_collected_at` - Collection timestamp
