@@ -23,7 +23,7 @@ A comprehensive Python-based tool for analyzing and documenting your entire Data
 
 ---
 
-## 📁 Project Structure
+# 📁 Project Structure
 
 ```
 workspace_assessment/
@@ -37,7 +37,7 @@ workspace_assessment/
 └── QUICKSTART.md          # Getting started guide
 ```
 
-## 🔧 Configuration
+# 🔧 Configuration
 
 All settings are in `config.ipynb`. Edit this notebook to customize the assessment.  The TARGET_CATALOG and TARGET_SCHEMA need to be created prior to running the workspace assessment code.
 
@@ -97,7 +97,7 @@ VERBOSE_SCHEMA_ERRORS = True      # Print detailed schema error info
 ```python
 # UC enumeration controls
 UC_ENABLE = True                          # Enable UC enumeration
-UC_CATALOG_ALLOWLIST = ["hive_metastore"] # Empty = all, or ["main", "catalog2"]
+UC_CATALOG_ALLOWLIST = []                 # Empty = all, or ["main", "catalog2"]
 UC_CATALOG_LIMIT = 0                      # 0 = all, N = first N catalogs
 UC_SCHEMA_LIMIT_PER_CATALOG = 0           # 0 = all, N = first N schemas per catalog
 UC_MAX_WORKERS = 20                       # Thread pool size for UC enumeration
@@ -275,7 +275,7 @@ ENABLE_STREAMING_WRITES = True   # True = stream, False = batch
 
 ---
 
-## 📊 What It Collects
+# 📊 What It Collects
 
 ### REST API Endpoints (~28 types)
 - **Compute**: Clusters, cluster policies, instance pools
@@ -302,7 +302,7 @@ All data is written to Unity Catalog as structured Delta tables:
 
 ---
 
-## 🎯 Key Features
+# 🎯 Key Features
 
 ### Performance Optimizations
 - ⚡ **Async HTTP** - All REST API calls use `aiohttp` with configurable concurrency
@@ -328,7 +328,7 @@ All data is written to Unity Catalog as structured Delta tables:
 
 ---
 
-## 🛠️ Usage Examples
+# 🛠️ Usage Examples
 
 ### Standard Run (Streaming Mode)
 ```python
@@ -362,7 +362,7 @@ ENDPOINT_PAGINATION_OVERRIDES = {
 UC_CATALOG_ALLOWLIST = ["main", "hive_metastore"]
 ```
 
-## 📈 Output Tables
+# 📈 Output Tables
 
 ### Summary Table
 - `your_catalog_name.workspace_scan.workspace_scan_summary` - Categorized counts of all objects
