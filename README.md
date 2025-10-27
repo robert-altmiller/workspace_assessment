@@ -106,7 +106,6 @@ UC_TABLE_BATCH_SIZE = 5000                # Write tables every N records (reduce
 - When `ENABLE_STREAMING_WRITES = True`, Unity Catalog tables are written in batches during enumeration
 - Default batch size: 5,000 tables per write
 - Prevents Spark driver OOM errors when scanning catalogs with thousands of tables
-- Progress updates show batch writes: `"[UC] Writing batch of 5000 tables to Delta..."`
 
 ### Per-Endpoint Pagination Control
 
