@@ -97,7 +97,16 @@ UC_CATALOG_ALLOWLIST = []                 # Empty = all, or ["main", "catalog2"]
 UC_CATALOG_LIMIT = 0                      # 0 = all, N = first N catalogs
 UC_SCHEMA_LIMIT_PER_CATALOG = 0           # 0 = all, N = first N schemas per catalog
 UC_MAX_WORKERS = 20                       # Thread pool size for UC enumeration
+
+# UC batch writing (memory optimization)
+UC_TABLE_BATCH_SIZE = 5000                # Write tables every N records (reduces memory usage)
 ```
+
+**Batch Writing for Large Catalogs:**
+- When `ENABLE_STREAMING_WRITES = True`, Unity Catalog tables are written in batches during enumeration
+- Default batch size: 5,000 tables per write
+- Prevents Spark driver OOM errors when scanning catalogs with thousands of tables
+- Progress updates show batch writes: `"[UC] Writing batch of 5000 tables to Delta..."`
 
 ### Per-Endpoint Pagination Control
 
