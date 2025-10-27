@@ -3,15 +3,15 @@
 A comprehensive Python-based tool for analyzing and documenting your entire Databricks workspace. Built for performance and maintainability, this tool automatically collects detailed inventory data from your Databricks environment through REST APIs and Unity Catalog, writing the results to Delta tables for analysis and reporting.
 
 **Use this tool to:**
-- 🔍 **Discover** all assets across your Databricks workspace (compute, jobs, ML models, data assets, and more)
-- 📊 **Inventory** Unity Catalog objects including catalogs, schemas, and tables with full metadata
-- 📈 **Report** on workspace utilization, governance, and migration readiness
-- 🔄 **Track** changes over time by running periodic assessments
-- 🚀 **Migrate** with confidence by understanding your complete workspace footprint
+- 🔍 **Discover** all assets across your Databricks workspace (compute, jobs, ML models, data assets, and more).
+- 📊 **Inventory** Unity Catalog objects including catalogs, schemas, and tables with full metadata.
+- 📈 **Report** on workspace utilization, governance, and migration readiness.
+- 🔄 **Track** changes over time by running periodic assessments.
+- 🚀 **Migrate** with confidence by understanding your complete workspace footprint.
 
 ---
 
-## 🚀 Quick Start
+# 🚀 Quick Start
 
 **New to this tool?** See [QUICKSTART.md](QUICKSTART.md) for a step-by-step guide including prerequisites.
 
@@ -39,7 +39,7 @@ workspace_assessment/
 
 # 🔧 Configuration
 
-All settings are in `config.ipynb`. Edit this notebook to customize the assessment.  The TARGET_CATALOG and TARGET_SCHEMA need to be created prior to running the workspace assessment code.
+All settings are in `config.ipynb`. Edit this notebook to customize the assessment.  The '__TARGET_CATALOG__' and '__TARGET_SCHEMA__' need to be created prior to running the workspace assessment code.
 
 ### Target Configuration
 
