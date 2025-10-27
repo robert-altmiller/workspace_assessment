@@ -9,8 +9,6 @@ A comprehensive Python-based tool for analyzing and documenting your entire Data
 - 🔄 **Track** changes over time by running periodic assessments.
 - 🚀 **Migrate** with confidence by understanding your complete workspace footprint.
 
---
-
 # 🚀 Quick Start
 
 **New to this tool?** See [QUICKSTART.md](QUICKSTART.md) for a step-by-step guide including prerequisites.
@@ -20,8 +18,6 @@ A comprehensive Python-based tool for analyzing and documenting your entire Data
 ```python
 %run ./main
 ```
-
---
 
 # 📁 Project Structure
 
@@ -273,8 +269,6 @@ ENABLE_STREAMING_WRITES = True   # True = stream, False = batch
 - Allows for data manipulation before writing
 - Single transaction for all writes
 
----
-
 # 📊 What It Collects
 
 ### REST API Endpoints (~28 types)
@@ -300,8 +294,6 @@ All data is written to Unity Catalog as structured Delta tables:
 - **Summary table** - Aggregated counts with categorization
 - **Full metadata** - Timestamps, workspace info, and complete object properties
 
----
-
 # 🎯 Key Features
 
 ### Performance Optimizations
@@ -325,8 +317,6 @@ All data is written to Unity Catalog as structured Delta tables:
 - **Modular design** - Independent notebooks for each functional area
 - **Testable** - Each component can be tested independently
 - **Customizable** - Fine-grained control over what to collect and how
-
----
 
 # 🛠️ Usage Examples
 
