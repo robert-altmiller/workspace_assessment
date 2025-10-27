@@ -52,8 +52,6 @@ RETRY_ATTEMPTS = 3                # Number of retry attempts
 
 # Pagination defaults
 PAGE_SIZE_DEFAULT = 100           # Default page size for pagination
-JOBS_PAGE_SIZE = 100              # API max for jobs endpoint
-DBSQL_WH_PAGE_SIZE = 100          # Page size for SQL warehouses
 ```
 
 ### Logging & Debug Settings
