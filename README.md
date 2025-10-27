@@ -45,13 +45,14 @@ WRITE_SUMMARY_MODE = "overwrite"      # "append" or "overwrite"
 
 ```python
 # Async HTTP concurrency
-MAX_CONCURRENCY = 20              # Concurrent API requests (default: 20)
+MAX_CONCURRENCY = 2               # Concurrent API requests (reduced to avoid throttling)
 HTTP_TIMEOUT_SEC = 60             # Request timeout in seconds
 RETRY_DELAY_BASE = 2              # Base delay for exponential backoff
 RETRY_ATTEMPTS = 3                # Number of retry attempts
 
 # Pagination defaults
 PAGE_SIZE_DEFAULT = 100           # Default page size for pagination
+GLOBAL_MAX_PAGES = 0              # 0 = respect per-endpoint max_pages; N = override all endpoints
 ```
 
 ### Logging & Debug Settings
@@ -86,7 +87,7 @@ VERBOSE_SCHEMA_ERRORS = True      # Print detailed schema error info
 ```python
 # UC enumeration controls
 UC_ENABLE = True                          # Enable UC enumeration
-UC_CATALOG_ALLOWLIST = []                 # Empty = all, or ["main", "catalog2"]
+UC_CATALOG_ALLOWLIST = ["hive_metastore"] # Empty = all, or ["main", "catalog2"]
 UC_CATALOG_LIMIT = 0                      # 0 = all, N = first N catalogs
 UC_SCHEMA_LIMIT_PER_CATALOG = 0           # 0 = all, N = first N schemas per catalog
 UC_MAX_WORKERS = 20                       # Thread pool size for UC enumeration
