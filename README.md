@@ -156,6 +156,41 @@ ENDPOINT_PAGINATION_OVERRIDES = {
 2. **Endpoint default** (`None`) - uses the endpoint's built-in setting  
 3. **Global default** - fallback for endpoints that support pagination
 
+### Excluding Specific Endpoints
+
+You can disable collection of specific endpoints by setting `"enabled": False` in `endpoints.ipynb`:
+
+```python
+# In endpoints.ipynb
+API_ENDPOINTS = {
+    "databricks_workspace_file": {
+        "url": "/api/2.0/workspace/list",
+        "list_key": "objects",
+        "paginate": False,
+        "enabled": False  # Set to False to skip this endpoint
+    },
+    
+    "databricks_cluster": {
+        "url": "/api/2.2/clusters/list",
+        "list_key": "clusters",
+        "paginate": True,
+        "enabled": True   # Set to True to collect (default)
+    },
+    # ... rest of endpoints
+}
+```
+
+**Benefits:**
+- ✅ **Fine-grained control** - Enable/disable any endpoint individually
+- ✅ **Self-documenting** - See which endpoints are disabled right in the definition
+- ✅ **Easy to toggle** - Just change `True` ↔ `False`
+- ✅ **Backwards compatible** - Defaults to `True` if `enabled` field is missing
+
+**Common exclusions:**
+- `databricks_workspace_file` - Very large, often not needed
+- `databricks_dbfs_file` - Very large, often not needed
+- `databricks_experiment` - Can be thousands of experiments
+
 ### Streaming vs Batch Writes
 
 **NEW: Streaming Writes Mode** - Write each endpoint's data to Unity Catalog immediately:
