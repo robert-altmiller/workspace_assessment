@@ -191,6 +191,61 @@ API_ENDPOINTS = {
 - `databricks_dbfs_file` - Very large, often not needed
 - `databricks_experiment` - Can be thousands of experiments
 
+### Limiting Pages Per Endpoint
+
+You can limit the number of pages collected for any endpoint by setting `"max_pages"` in `endpoints.ipynb`:
+
+```python
+# In endpoints.ipynb
+API_ENDPOINTS = {
+    "databricks_job": {
+        "url": "/api/2.2/jobs/list",
+        "list_key": "jobs",
+        "paginate": True,
+        "enabled": True,
+        "max_pages": 5  # Only collect first 5 pages (~500 jobs with page_size=100)
+    },
+    
+    "databricks_experiment": {
+        "url": "/api/2.0/mlflow/experiments/list",
+        "list_key": "experiments",
+        "paginate": True,
+        "enabled": True,
+        "max_pages": 1  # Quick test: first page only (~100 experiments)
+    },
+    
+    "databricks_cluster": {
+        "url": "/api/2.2/clusters/list",
+        "list_key": "clusters",
+        "paginate": True,
+        "enabled": True,
+        "max_pages": 0  # 0 = unlimited (collect all pages) - DEFAULT
+    },
+}
+```
+
+**Global Override** - Apply the same limit to all endpoints in `config.ipynb`:
+
+```python
+# In config.ipynb
+GLOBAL_MAX_PAGES = 0   # 0 = respect per-endpoint settings (default)
+GLOBAL_MAX_PAGES = 1   # Override all endpoints: only collect first page (ultra-fast testing)
+GLOBAL_MAX_PAGES = 5   # Override all endpoints: collect first 5 pages
+```
+
+**Benefits:**
+- ✅ **Fast testing** - Set `GLOBAL_MAX_PAGES = 1` to test the entire pipeline quickly
+- ✅ **Sampling** - Get representative samples from large datasets
+- ✅ **Cost control** - Limit API calls for expensive operations
+- ✅ **Predictable** - Exactly N pages = N API calls per endpoint
+- ✅ **Clear logging** - Shows progress like "Page 3/5"
+
+**Use Cases:**
+- `max_pages: 1` - Quick test (~100 items per endpoint)
+- `max_pages: 5` - Small sample (~500 items per endpoint)
+- `max_pages: 10` - Medium collection (~1000 items per endpoint)
+- `max_pages: 0` - Full collection (unlimited, default)
+
 ### Streaming vs Batch Writes
 
 **NEW: Streaming Writes Mode** - Write each endpoint's data to Unity Catalog immediately:
