@@ -9,7 +9,7 @@ A comprehensive Python-based tool for analyzing and documenting your entire Data
 - 🔄 **Track** changes over time by running periodic assessments.
 - 🚀 **Migrate** with confidence by understanding your complete workspace footprint.
 
----
+--
 
 # 🚀 Quick Start
 
@@ -21,7 +21,7 @@ A comprehensive Python-based tool for analyzing and documenting your entire Data
 %run ./main
 ```
 
----
+--
 
 # 📁 Project Structure
 
