@@ -1,6 +1,68 @@
 # Databricks Workspace Assessment Tool
 
-A modular Python tool for comprehensive Databricks workspace assessment, designed for performance and maintainability.
+A comprehensive Python-based tool for analyzing and documenting your entire Databricks workspace. Built for performance and maintainability, this tool automatically collects detailed inventory data from your Databricks environment through REST APIs and Unity Catalog, writing the results to Delta tables for analysis and reporting.
+
+**Use this tool to:**
+- 🔍 **Discover** all assets across your Databricks workspace (compute, jobs, ML models, data assets, and more)
+- 📊 **Inventory** Unity Catalog objects including catalogs, schemas, and tables with full metadata
+- 📈 **Report** on workspace utilization, governance, and migration readiness
+- 🔄 **Track** changes over time by running periodic assessments
+- 🚀 **Migrate** with confidence by understanding your complete workspace footprint
+
+---
+
+## 📊 What It Collects
+
+### REST API Endpoints (~28 types)
+- **Compute**: Clusters, cluster policies, instance pools
+- **Jobs & Workflows**: Jobs, DLT pipelines, dashboards, SQL alerts
+- **MLflow**: Experiments, registered models, model serving endpoints
+- **Data & Analytics**: SQL warehouses, connections, repos
+- **Security & Governance**: Groups, secret scopes, storage credentials, external locations
+- **Unity Catalog**: Catalogs, shares, recipients
+- **Vector Search**: Vector search endpoints and indexes
+- **Workspace**: Files, DBFS files, global init scripts, workspace configuration
+
+### Unity Catalog Deep Scan
+- **Complete metadata** for catalogs, schemas, and tables
+- **Table type classification** (MANAGED, EXTERNAL, VIEW, MATERIALIZED_VIEW, STREAMING_TABLE)
+- **Configurable limits** for faster testing or focused scans
+- **Parallel enumeration** using thread pools for optimal performance
+- **Detailed properties** including storage locations, formats, and column schemas
+
+### Output: 30+ Delta Tables
+All data is written to Unity Catalog as structured Delta tables:
+- **Raw tables** - One table per object type (`raw_databricks_*`)
+- **Summary table** - Aggregated counts with categorization
+- **Full metadata** - Timestamps, workspace info, and complete object properties
+
+---
+
+## 🎯 Key Features
+
+### Performance Optimizations
+- ⚡ **Async HTTP** - All REST API calls use `aiohttp` with configurable concurrency
+- 🔄 **Smart Pagination** - Per-endpoint pagination control with configurable page limits
+- 💾 **Streaming Writes** - Write data to Unity Catalog immediately (memory efficient) or batch at end
+- 🧵 **Parallel UC Enumeration** - Multi-threaded catalog/schema/table discovery
+- 🛡️ **Rate Limit Handling** - Automatic exponential backoff and retry logic
+- 🎚️ **Flexible Execution** - Process endpoints in parallel or sequentially based on size
+
+### Data Quality & Reliability
+- **Schema Evolution** - Automatic schema merging for new columns
+- **Error Recovery** - Fallback mechanisms for schema conflicts
+- **Empty Dataset Handling** - Skip empty results that cause inference errors
+- **Detailed Logging** - Comprehensive progress tracking and error reporting
+- **Incremental or Full Refresh** - Support for both append and overwrite modes
+
+### Modularity & Extensibility
+- **Configuration-driven** - Modify behavior without touching code
+- **Extensible** - Easily add new API endpoints in `endpoints.ipynb`
+- **Modular design** - Independent notebooks for each functional area
+- **Testable** - Each component can be tested independently
+- **Customizable** - Fine-grained control over what to collect and how
+
+---
 
 ## 🚀 Quick Start
 
@@ -18,13 +80,14 @@ A modular Python tool for comprehensive Databricks workspace assessment, designe
 
 ```
 workspace_assessment/
-├── main.py              # Main execution orchestrator
-├── config.py            # Configuration constants and settings  
-├── api_client.py        # Async HTTP client and API utilities
-├── endpoints.py         # API endpoint definitions and pagination config
-├── data_processing.py   # DataFrame normalization and UC writing
-├── unity_catalog.py     # Unity Catalog enumeration logic
-└── README.md           # This file
+├── main.ipynb              # Main execution orchestrator
+├── config.ipynb            # Configuration constants and settings  
+├── api_client.ipynb        # Async HTTP client and API utilities
+├── endpoints.ipynb         # API endpoint definitions and pagination config
+├── data_processing.ipynb   # DataFrame normalization and UC writing
+├── unity_catalog.ipynb     # Unity Catalog enumeration logic
+├── README.md               # This file
+└── QUICKSTART.md          # Getting started guide
 ```
 
 ## 🔧 Configuration
@@ -262,40 +325,6 @@ ENABLE_STREAMING_WRITES = True   # True = stream, False = batch
 - Good for smaller workspaces
 - Allows for data manipulation before writing
 - Single transaction for all writes
-
-## 📊 What It Collects
-
-### REST API Endpoints (~25 types)
-- **Compute**: Clusters, policies, instance pools
-- **Jobs & Pipelines**: Jobs, DLT pipelines, alerts, dashboards  
-- **MLflow**: Experiments, models, serving endpoints
-- **Data**: SQL warehouses, repos, connections
-- **Security**: Groups, secret scopes, storage credentials
-- **Vector Search**: Endpoints and indexes
-
-### Unity Catalog Deep Scan
-- Catalogs, schemas, and tables with type classification
-- Configurable limits for faster testing
-- Threaded enumeration for performance
-
-## 🎯 Key Features
-
-### Performance Optimizations
-- **Async HTTP**: All REST API calls use aiohttp with configurable concurrency
-- **Smart Pagination**: Per-endpoint pagination control
-- **Streaming Writes**: Write raw data to UC immediately after each API call (configurable)
-- **Unity Catalog Threading**: Parallel schema/table enumeration
-- **Rate Limit Handling**: Automatic backoff and retry logic
-
-### Data Output
-- **Raw Tables**: One UC table per object type (`raw_databricks_*`)
-- **Summary Table**: Categorized counts with migration flags
-- **Metadata**: Collection timestamps and workspace info
-
-### Modularity
-- **Configurable**: Easy to modify settings without touching core logic
-- **Extensible**: Add new endpoints in `endpoints.py`
-- **Testable**: Each module can be tested independently
 
 ## 🛠️ Usage Examples
 
