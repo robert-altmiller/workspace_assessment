@@ -29,7 +29,7 @@ workspace_assessment/
 
 ## 🔧 Configuration
 
-All settings are in `config.ipynb`. Edit this notebook to customize the assessment.
+All settings are in `config.ipynb`. Edit this notebook to customize the assessment.  The TARGET_CATALOG and TARGET_SCHEMA need to be created prior to running the workspace assessment code.
 
 ### Target Configuration
 
@@ -117,8 +117,7 @@ ENDPOINT_PAGINATION_OVERRIDES = {
     # --- Jobs / Pipelines / Alerts / Dashboards ---
     "databricks_job": True,                 # Enable - can be many jobs
     "databricks_pipeline": None,            # No pagination available
-    "databricks_alert": True,               # Enable - can be many alerts
-    "databricks_dashboard": False,          # Disable for faster collection
+    "databricks_dashboard": True,           # Disable for faster collection
     
     # --- MLflow / Serving ---
     "databricks_registered_model": True,    # Enable - can be many models
@@ -127,7 +126,6 @@ ENDPOINT_PAGINATION_OVERRIDES = {
     
     # --- DBSQL ---
     "databricks_sql_endpoint": True,        # Enable - can be many warehouses
-    "databricks_sql_dashboard": False,      # Alias to dashboard
     "databricks_sql_alerts": True,          # Alias to alerts
     
     # --- UC / Metastore ---
@@ -348,12 +346,10 @@ UC_CATALOG_ALLOWLIST = ["main", "hive_metastore"]
 **Jobs & Workflows**
 - `your_catalog_name.workspace_scan.raw_databricks_job`
 - `your_catalog_name.workspace_scan.raw_databricks_pipeline`
-- `your_catalog_name.workspace_scan.raw_databricks_alert`
 - `your_catalog_name.workspace_scan.raw_databricks_dashboard`
 
 **Data & Analytics**
 - `your_catalog_name.workspace_scan.raw_databricks_sql_endpoint`
-- `your_catalog_name.workspace_scan.raw_databricks_sql_dashboard`
 - `your_catalog_name.workspace_scan.raw_databricks_sql_alerts`
 
 **Unity Catalog**
