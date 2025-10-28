@@ -109,7 +109,7 @@ UC_TABLE_BATCH_SIZE = 5000                # Write tables every N records (reduce
 
 ### Per-Endpoint Pagination Control
 
-**Complete pagination control** for all 29 endpoints in `config.ipynb`:
+**Complete pagination control** for all 27 endpoints in `config.ipynb`:
 
 ```python
 # Global default
