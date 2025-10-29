@@ -118,7 +118,7 @@ ENABLE_PAGINATION_BY_DEFAULT = True
 # Per-endpoint overrides (values: True = force enable, False = force disable, None = use default)
 ENDPOINT_PAGINATION_OVERRIDES = {
     # --- Compute ---
-    "databricks_cluster": None,             # No pagination available
+    "databricks_cluster": True,             # No pagination available
     "databricks_cluster_policy": True,      # Enable - can be many policies
     "databricks_instance_pool": None,       # No pagination available
     
