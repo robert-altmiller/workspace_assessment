@@ -158,7 +158,7 @@ ENDPOINT_PAGINATION_OVERRIDES = {
     
     # --- Vector Search ---
     "databricks_vector_search_endpoint": True,  # Enable
-    "databricks_vector_search_index": None,     # Skipped (requires endpoint_name)
+    "databricks_vector_search_index": True,     # Enable
 }
 ```
 
