@@ -45,6 +45,7 @@ TARGET_CATALOG = "your_catalog_name"  # Your catalog name
 TARGET_SCHEMA = "workspace_scan"      # Schema for output tables
 WRITE_RAW_MODE = "overwrite"          # "append" or "overwrite"
 WRITE_SUMMARY_MODE = "overwrite"      # "append" or "overwrite"
+DELETE_EXISTING_DATA = True           # Delete all existing assessment tables before scan
 ```
 
 ### HTTP & Concurrency Settings
