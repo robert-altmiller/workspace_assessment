@@ -98,10 +98,7 @@ UC_CATALOG_ALLOWLIST = []                 # Empty = all, or ["main", "catalog2"]
 UC_CATALOG_LIMIT = 0                      # 0 = all, N = first N catalogs
 UC_SCHEMA_LIMIT_PER_CATALOG = 0           # 0 = all, N = first N schemas per catalog
 UC_MAX_WORKERS = 20                       # Thread pool size for UC enumeration
-SPARK_KEEPALIVE_INTERVAL = 120            # Keep-alive ping interval in seconds (2 min for serverless)
-
-# UC batch writing (memory optimization)
-UC_TABLE_BATCH_SIZE = 5000                # Write tables every N records (reduces memory usage)
+SPARK_KEEPALIVE_INTERVAL = 120            # Keep-alive ping interval in seconds (2 min for serverless) - Don't Modify
 ```
 
 **Batch Writing for Large Catalogs:**
